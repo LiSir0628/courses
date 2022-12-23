@@ -1,0 +1,121 @@
+{
+	"pages": [{
+		"path": "pages/index/index",
+		"style": {
+			// "navigationBarTitleText": "首页",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/index/detail",
+		"style": {
+			// "navigationBarTitleText": "详情页面",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/index/more",
+		"style": {
+			// "navigationBarTitleText": "更多",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/register/choose",
+		"style": {
+			// "navigationBarTitleText": "选择",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/register/register",
+		"style": {
+			// "navigationBarTitleText": "注册",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/register/login",
+		"style": {
+			// "navigationBarTitleText": "登录",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/register/forget",
+		"style": {
+			// "navigationBarTitleText": "忘记密码",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/user/user",
+		"style": {
+			// "navigationBarTitleText": "个人中心",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/user/history",
+		"style": {
+			// "navigationBarTitleText": "浏览历史",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/user/invite",
+		"style": {
+			// "navigationBarTitleText": "邀请列表",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/user/commission",
+		"style": {
+			// "navigationBarTitleText": "佣金列表",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/user/purchase",
+		"style": {
+			// "navigationBarTitleText": "购买课程",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/user/success",
+		"style": {
+			// "navigationBarTitleText": "成功",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
+		"path": "pages/user/editName",
+		"style": {
+			// "navigationBarTitleText": "修改名字",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "Amoy Course",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#ffffff"
+	}
+}
