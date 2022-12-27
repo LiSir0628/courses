@@ -12,7 +12,8 @@
 			<view class="no-full-title" v-if="!videoUrl">
 				<image class="back" src="../../static/images/detail/back.png" @click="back"></image>
 			</view>
-			<image v-if="!videoUrl" class="video" src="../../static/images/detail/icon02.png"></image>
+			<image v-if="!videoUrl && !coverUrl" class="video" src="../../static/images/detail/icon02.png"></image>
+			<image v-if="!videoUrl && coverUrl" class="video-cover" :src="coverUrl"></image>
 			<video v-if="videoUrl" id="videoId" class="videoId" :title="title" :src="videoUrl" :poster="coverUrl" 
 			@timeupdate="videoTimeUpdateEvent" @progress="videoProgress" 
 			@play="play" @waiting="wait" @fullscreenchange="fullscreen">
@@ -53,19 +54,19 @@
 					@click="goProgramme(index,item)">
 					<template v-if="spMsg.buied == 1">
 						<!-- <view>{{item.title}} - 已购买</view> -->
-						<view>{{item.title}}</view>
+						<view>{{index + 1}}、{{item.title}}</view>
 					</template>
 					<template v-else-if="spMsg.charge_type ==1">
-						<view>{{item.title}}(Try it out)</view>
+						<view>{{index + 1}}、{{item.title}}(Try it out)</view>
 					</template>
 					<template v-else-if="spMsg.charge_type ==2">
-						<view v-if="item.charge_type == 1">{{item.title}}(Try it out)</view>
+						<view v-if="item.charge_type == 1">{{index + 1}}、{{item.title}}(Try it out)</view>
 						<!-- <view v-else-if="item.charge_type == 2" @click.stop="goMask(index,item)">{{item.title}} - 收费 - 触发付款</view> -->
-						<view v-else-if="item.charge_type == 2" @click.stop="goMask(index,item)">{{item.title}}</view>
+						<view v-else-if="item.charge_type == 2" @click.stop="goMask(index,item)">{{index + 1}}、{{item.title}}</view>
 					</template>
 					<template v-else-if="spMsg.charge_type ==3">
 						<!-- <view @click.stop="goMask(index,item)">{{item.title}} - 收费 - 触发付款</view> -->
-						<view @click.stop="goMask(index,item)">{{item.title}}</view>
+						<view @click.stop="goMask(index,item)">{{index + 1}}、{{item.title}}</view>
 					</template>
 				</view>
 			</view>
@@ -103,7 +104,8 @@
 
 				<view class="state-center">
 					<view class="state-msg">
-						<image class="state-logo" src="../../static/images/detail/icon02.png"></image>
+						<image v-if="coverUrl" class="state-logo" :src="coverUrl"></image>
+						<image v-else class="state-logo" src="../../static/images/detail/icon02.png"></image>
 						<view class="state-content">
 							<view class="state-name">{{spMsg.title}}</view>
 							<view class="state-times">
@@ -346,7 +348,11 @@
 								}
 							}
 							if(this.spLists.length> 0){
-								//this.coverUrl = this.spLists[this.kindex].full_pic_url
+								if(this.spLists[this.kindex].full_pic_url){
+									this.coverUrl = this.spLists[this.kindex].full_pic_url
+								} else {
+									this.coverUrl = "../../static/images/detail/icon02.png"
+								}
 								this.title = this.spLists[this.kindex].title
 							}
 							this.playVideo("no")
@@ -376,7 +382,13 @@
 				this.kindex = index
 				
 				this.videoUrl = ""
-				//this.coverUrl = this.spLists[index].full_pic_url
+				
+				if(this.spLists[index].full_pic_url){
+					this.coverUrl = this.spLists[index].full_pic_url
+				} else {
+					this.coverUrl = "../../static/images/detail/icon02.png"
+				}
+			
 				this.isShowPlay = true
 				this.$refs.payState.open("center")
 			},
@@ -388,7 +400,11 @@
 				this.kindex = index
 				console.log(this.kindex)
 				//视频封面
-				//this.coverUrl = this.spLists[index].full_pic_url
+				if(this.spLists[index].full_pic_url){
+					this.coverUrl = this.spLists[index].full_pic_url
+				} else {
+					this.coverUrl = "../../static/images/detail/icon02.png"
+				}
 				this.startVideo()
 			},
 			openPay() {
@@ -538,6 +554,13 @@
 	}
 
 	.video {
+		width: 750rpx;
+		height: 414rpx;
+		padding: 18rpx 0;
+		background: #000000;
+		display: block;
+	}
+	.video-cover{
 		width: 750rpx;
 		height: 414rpx;
 		padding: 18rpx 0;
