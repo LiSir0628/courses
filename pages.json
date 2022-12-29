@@ -88,6 +88,14 @@
 			}
 		}
 	},{
+		"path": "pages/user/staff",
+		"style": {
+			// "navigationBarTitleText": "代理商下级页面",
+			"app-plus": {
+				"titleNView": false
+			}
+		}
+	},{
 		"path": "pages/user/purchase",
 		"style": {
 			// "navigationBarTitleText": "购买课程",

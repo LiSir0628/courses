@@ -24,6 +24,10 @@
 			<view class="category-text">My Commission</view>
 			<!-- <view class="earn">$2500</view> -->
 		</view>
+		<view v-if="useList.staff == 1" class="category no-border" @click="goSales">
+			<image class="category-logo category-logo-a" src="../../static/images/user/icon11.png"></image>
+			<view class="category-text">Subordinate Sales</view>
+		</view>
 		<view class="category" @click="goHistory">
 			<image class="category-logo" src="../../static/images/user/icon01.png"></image>
 			<view class="category-text">Browse History</view>
@@ -271,6 +275,11 @@
 				//目前仿佛没有点击事件
 				uni.navigateTo({
 					url: "./commission"
+				});
+			},
+			goSales() {
+				uni.navigateTo({
+					url: "./staff"
 				});
 			},
 			goHistory() {
