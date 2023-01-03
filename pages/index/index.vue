@@ -10,14 +10,20 @@
 				<input class="search-input" v-model="keyword" placeholder="Search for a course"
 					@confirm="getList" />
 			</view>
-			<view class="uni-margin-wrap">
-				<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval"
-					:duration="duration">
-					<swiper-item v-for="item,index in banner" @click="goBanner(item)">
-						<image style="width: 690rpx;" mode="widthFix" :src="item.image"></image>
-					</swiper-item>
-				</swiper>
-			</view>
+		</view>
+		
+		<view class="uni-margin-wrap">
+			<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval"
+				:duration="duration">
+				<swiper-item v-for="item,index in banner" @click="goBanner(item)">
+					<image style="width: 690rpx;" mode="widthFix" :src="item.image"></image>
+				</swiper-item>
+			</swiper>
+		</view>
+		
+		<view class="new-modular">
+			<image class="icon09" mode="widthFix" src="../../static/images/icon10.png"></image>
+			<image class="icon10" mode="widthFix" src="../../static/images/icon09.png"></image>
 		</view>
 		
 		<!-- 这里是可滚动商品展示 -->
@@ -25,7 +31,7 @@
 			<view class="recommend-title">Recommended</view>
 			<view class="recommend-more" @click="goMore">View more</view>
 		</view>
-		<scroll-view class="scroll-logo-list" scroll-x="true" @scroll="scroll" :show-scrollbar="false">
+		<!-- <scroll-view class="scroll-logo-list" scroll-x="true" @scroll="scroll" :show-scrollbar="false">
 			<view class="logo-list">
 				<view class="logo-list-other" v-for="item,index in spLists" @click="goDetail(item)">
 					<image class="sp-logo" :src="item.full_pic_url"></image>
@@ -34,7 +40,15 @@
 				</view>
 				<view class="modular">0</view>
 			</view>
-		</scroll-view>
+		</scroll-view> -->
+		<view class="logo-list">
+			<view class="logo-list-other" v-for="item,index in spLists" @click="goDetail(item)">
+				<image class="sp-logo" :src="item.full_pic_url"></image>
+				<view class="sp-name">{{item.title}}</view>
+				<view class="sp-des">{{item.description}}</view>
+			</view>
+			<view class="modular">0</view>
+		</view>
 		
 		<image class="des-logo" src="../../static/images/banner05.png"></image>
 		
@@ -167,7 +181,7 @@
 						category_id: "",
 						keyword: this.keyword,
 						page: 1,
-						limit: 20,
+						limit: 10,
 					}
 				})
 				.then(res => {
@@ -240,6 +254,15 @@
 	.container {
 		padding-bottom: 120rpx;
 	}
+	.top{
+		width: 750rpx;
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: #FFFFFF;
+		z-index: 100;
+	}
+	
 	.title-modular{
 		display: flex;
 		align-items: center;
@@ -312,9 +335,10 @@
 	.uni-margin-wrap {
 		width: 690rpx;
 		min-height: 240rpx;
-		padding: 0 30rpx 50rpx;
+		padding: 232rpx 30rpx 0;
 		background: #FFFFFF;
 		border-radius: 24rpx;
+		/* margin-top: 232rpx; */
 	}
 	
 	.swiper {
@@ -354,6 +378,25 @@
 		border-radius: 4rpx;
 	}
 	
+	/* 新增模块 */
+	.new-modular{
+		width: 690rpx;
+		padding: 20rpx 30rpx 32rpx;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	
+	.icon09{
+		width: 335rpx;
+		display: block;
+	}
+	
+	.icon10{
+		width: 335rpx;
+		display: block;
+	}
+	
 	/* 滚动 */
 	.recommend-modular{
 		display: flex;
@@ -376,7 +419,7 @@
 	
 	.scroll-logo-list {
 		width: 750rpx;
-		margin: 10rpx auto 0;
+		margin: 4rpx auto 0;
 		/* margin: 0; */
 		white-space: nowrap;
 		border-radius: 24rpx;
@@ -388,19 +431,20 @@
 	
 	.logo-list {
 		display: flex;
-		padding: 30rpx 30rpx 30rpx;
+		flex-wrap: wrap;
+		padding: 30rpx 20rpx 10rpx;
 	}
 	
 	.logo-list-other {
-		width: 100%;
 		/* margin-right: 30rpx; */
-		white-space: initial;
-		margin-right: 20rpx;
+		/* white-space: initial; */
+		/* margin-right: 20rpx; */
+		margin: 0 10rpx 30rpx;
 		
-		width: 440rpx;
+		width: 335rpx;
 		height: 386rpx;
 		background: #FFFFFF;
-		box-shadow: 0rpx 0rpx 30rpx 0rpx rgba(33,38,68,0.1);
+		box-shadow: 0rpx 0rpx 20rpx 10rpx rgba(33,38,68,0.1);
 		border-radius: 24rpx;
 		
 		box-sizing: border-box;
@@ -413,7 +457,7 @@
 	}
 	
 	.sp-logo{
-		width: 440rpx;
+		width: 335rpx;
 		height: 200rpx;
 		display: block;
 		
@@ -453,7 +497,7 @@
 		width: 690rpx;
 		height: 140rpx;
 		border-radius: 24rpx;
-		margin: 10rpx auto;
+		margin: 0 auto 10rpx;
 		display: block;
 	}
 	
